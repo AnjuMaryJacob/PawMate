@@ -1,0 +1,416 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+PawMate | Find Your Best Friend
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- Hero text -->
+            <div class="col-lg-6">
+
+                <span class="eyebrow">
+                    ♡ A home for every furry friend
+                </span>
+
+                <h1 class="hero-title">
+                    Your new best<br>
+                    friend is
+                    <span>waiting.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Meet loving pets from trusted local shelters.
+                    One small match could become your biggest adventure.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="{% url 'pet_list' %}"
+                       class="btn btn-paw btn-lg">
+                        Find my pawsome match
+                        <span>→</span>
+                    </a>
+
+                    <a href="#featured-pets"
+                       class="text-link">
+                        Meet our pets
+                    </a>
+
+                </div>
+
+                <div class="hero-trust">
+
+                    <div class="avatar-stack">
+                        <span>🐶</span>
+                        <span>🐱</span>
+                        <span>🐕</span>
+                    </div>
+
+                    <p>
+                        Find your companion<br>
+                        <strong>Give love a home.</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- Hero images -->
+            <div class="col-lg-6">
+
+                <div class="hero-visual">
+
+                    <div class="hero-image hero-image-main">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=85"
+                            alt="A happy dog enjoying time with its companion">
+
+                        <div class="image-caption">
+                            <span class="caption-label">
+                                INSTANT CONNECTION
+                            </span>
+
+                            <h5>Love at first paw.</h5>
+
+                            <p>Your new adventure starts here.</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="hero-image hero-image-small">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=600&q=85"
+                            alt="A cat looking for a loving home">
+
+                    </div>
+
+                    <div class="hero-stat-card">
+
+                        <span class="stat-icon">🐾</span>
+
+                        <h3>{{ total_pets|default:"0" }}</h3>
+
+                        <p>Pets waiting for a home</p>
+
+                    </div>
+
+                    <div class="floating-label">
+                        ♥ Find your forever friend
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURED PETS -->
+<section class="featured-section" id="featured-pets">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-eyebrow">
+                    MEET YOUR MATCH
+                </span>
+
+                <h2>
+                    Love at first sight?
+                </h2>
+
+                <p>
+                    These sweet faces are ready to say hello.
+                </p>
+            </div>
+
+            <div class="pet-filters">
+
+                <button class="filter-btn active"
+                        data-filter="all">
+                    All Pets
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="dog">
+                    Dogs
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="cat">
+                    Cats
+                </button>
+
+                <button class="filter-btn"
+                        data-filter="other">
+                    Other Friends
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            {% for pet in featured_pets %}
+
+                <div class="col-12 col-sm-6 col-lg-4 pet-card-column"
+                     data-pet-type="{{ pet.pet_type.name|lower }}">
+
+                    <article class="pet-card">
+
+                        <div class="pet-image-wrapper">
+
+                            {% if pet.image %}
+
+                                <img src="{{ pet.image.url }}"
+                                     alt="{{ pet.name }}"
+                                     class="pet-card-image">
+
+                            {% else %}
+
+                                <img
+                                    src="https://placehold.co/600x450/F3E8D8/34463D?text=Meet+{{ pet.name|urlencode }}"
+                                    alt="{{ pet.name }}"
+                                    class="pet-card-image">
+
+                            {% endif %}
+
+                            <span class="pet-status-badge">
+                                {{ pet.get_status_display }}
+                            </span>
+
+                            {% if user.is_authenticated %}
+
+                                <form method="post"
+                                      action="{% url 'toggle_favorite' pet.pk %}"
+                                      class="favorite-form">
+
+                                    {% csrf_token %}
+
+                                    <button type="submit"
+                                            class="favorite-btn"
+                                            aria-label="Add {{ pet.name }} to favorites">
+                                        ♥
+                                    </button>
+
+                                </form>
+
+                            {% else %}
+
+                                <a href="{% url 'login' %}"
+                                   class="favorite-btn favorite-link"
+                                   aria-label="Sign in to save {{ pet.name }}">
+                                    ♡
+                                </a>
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="pet-card-body">
+
+                            <div class="pet-title-row">
+
+                                <div>
+                                    <h3>{{ pet.name }}</h3>
+
+                                    <p>
+                                        {{ pet.breed|default:pet.pet_type.name }}
+                                        ·
+                                        {% if pet.age_years %}
+                                            {{ pet.age_years }} year{{ pet.age_years|pluralize }}
+                                        {% endif %}
+
+                                        {% if pet.age_months %}
+                                            {{ pet.age_months }} month{{ pet.age_months|pluralize }}
+                                        {% endif %}
+
+                                        {% if not pet.age_years and not pet.age_months %}
+                                            Age unknown
+                                        {% endif %}
+                                    </p>
+                                </div>
+
+                                <a href="{% url 'pet_detail' pet.pk %}"
+                                   class="pet-arrow"
+                                   aria-label="View {{ pet.name }}">
+                                    →
+                                </a>
+
+                            </div>
+
+                            <div class="pet-card-footer">
+
+                                <span class="pet-location">
+                                    📍 {{ pet.location }}
+                                </span>
+
+                                <a href="{% url 'pet_detail' pet.pk %}"
+                                   class="view-pet-link">
+                                    Meet {{ pet.name }}
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12">
+
+                    <div class="empty-pets">
+
+                        <span>🐾</span>
+
+                        <h3>Your next best friend is waiting!</h3>
+
+                        <p>
+                            We haven't added any pets yet.
+                            Check back soon to meet your new companion.
+                        </p>
+
+                        {% if user.is_authenticated %}
+                            <a href="/admin/pets/pet/add/"
+                               class="btn btn-paw">
+                                Add Your First Pet
+                            </a>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <div class="text-center mt-5">
+
+            <a href="{% url 'pet_list' %}"
+               class="btn btn-outline-paw btn-lg">
+                View all adoptable pets →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section class="steps-section" id="how-it-works">
+
+    <div class="container">
+
+        <div class="steps-heading">
+
+            <span class="section-eyebrow">
+                A SIMPLE PATH HOME
+            </span>
+
+            <h2>
+                Three steps. One happy family.
+            </h2>
+
+            <p>
+                Your journey to finding a forever friend starts here.
+            </p>
+
+        </div>
+
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+
+                <div class="step-card">
+
+                    <span class="step-number">01</span>
+
+                    <div class="step-icon">⌕</div>
+
+                    <h3>Find your match</h3>
+
+                    <p>
+                        Explore local pets and filter by the
+                        things that matter most to your family.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="step-card">
+
+                    <span class="step-number">02</span>
+
+                    <div class="step-icon">♧</div>
+
+                    <h3>Meet in person</h3>
+
+                    <p>
+                        Connect with a pet's owner or shelter
+                        and arrange a meeting.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="step-card">
+
+                    <span class="step-number">03</span>
+
+                    <div class="step-icon">♥</div>
+
+                    <h3>Head home happy</h3>
+
+                    <p>
+                        Complete your adoption application
+                        and begin a lifetime of wonderful adventures.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

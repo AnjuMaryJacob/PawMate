@@ -1,0 +1,1513 @@
+/* =========================
+   PAWMATE DESIGN SYSTEM
+========================= */
+
+:root {
+    --cream: #f8f3e9;
+    --white: #ffffff;
+    --coral: #fa706b;
+    --coral-dark: #e95d58;
+    --green: #20372f;
+    --green-light: #344a40;
+    --text: #26372f;
+    --muted: #777b73;
+    --border: #e8e1d5;
+    --peach: #f2c8a8;
+    --soft-pink: #fff0ec;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    color: var(--text);
+    background: var(--white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Playfair Display", serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.paw-navbar {
+    background: var(--cream);
+    padding: 18px 0;
+}
+
+.paw-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    font-weight: 800;
+    font-size: 21px;
+    letter-spacing: -1px;
+}
+
+.paw-brand:hover {
+    color: var(--coral);
+}
+
+.brand-icon {
+    color: var(--coral);
+    font-size: 23px;
+}
+
+.paw-navbar .nav-link {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: color 0.2s ease;
+}
+
+.paw-navbar .nav-link:hover {
+    color: var(--coral-dark);
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.signin-link,
+.welcome-text {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.btn-paw {
+    background: var(--green);
+    color: var(--white);
+    border: 1px solid var(--green);
+    border-radius: 30px;
+    padding: 11px 20px;
+    font-weight: 700;
+    font-size: 13px;
+    transition: all 0.25s ease;
+}
+
+.btn-paw:hover {
+    background: var(--coral);
+    border-color: var(--coral);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-outline-paw {
+    border: 1px solid #c7cec7;
+    color: var(--green);
+    background: transparent;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.25s ease;
+}
+
+.btn-outline-paw:hover {
+    color: var(--white);
+    background: var(--green);
+    border-color: var(--green);
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero-section {
+    background: var(--cream);
+    padding: 65px 0 75px;
+    overflow: hidden;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--coral-dark);
+    background: #fffaf4;
+    border: 1px solid #f2d5c7;
+    border-radius: 30px;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.hero-title {
+    font-size: clamp(42px, 5vw, 68px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -2.5px;
+    margin-bottom: 22px;
+}
+
+.hero-title span {
+    color: var(--coral);
+}
+
+.hero-description {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 460px;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hero-buttons .btn-paw {
+    background: var(--coral);
+    border-color: var(--coral);
+}
+
+.hero-buttons .btn-paw:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.hero-buttons .btn-paw span {
+    margin-left: 10px;
+}
+
+.text-link {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.text-link:hover {
+    color: var(--coral-dark);
+}
+
+.hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.avatar-stack {
+    display: flex;
+}
+
+.avatar-stack span {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: 2px solid var(--cream);
+    border-radius: 50%;
+    margin-left: -7px;
+    font-size: 17px;
+}
+
+.avatar-stack span:first-child {
+    margin-left: 0;
+}
+
+.hero-trust p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.hero-trust strong {
+    color: var(--green);
+}
+
+
+/* =========================
+   HERO VISUAL
+========================= */
+
+.hero-visual {
+    position: relative;
+    min-height: 440px;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.hero-visual::before {
+    content: "";
+    position: absolute;
+    width: 88%;
+    height: 76%;
+    right: 0;
+    top: 10%;
+    background: var(--peach);
+    border-radius: 48% 35% 43% 36%;
+    transform: rotate(-6deg);
+}
+
+.hero-image {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 23px;
+    box-shadow: 0 15px 35px rgba(35, 45, 36, 0.12);
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.hero-image-main {
+    width: 65%;
+    height: 340px;
+    left: 0;
+    top: 32px;
+    z-index: 2;
+}
+
+.hero-image-small {
+    width: 39%;
+    height: 205px;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.image-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 13px;
+    padding: 14px;
+}
+
+.caption-label {
+    display: block;
+    color: var(--coral-dark);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.image-caption h5 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.image-caption p {
+    color: var(--muted);
+    font-size: 10px;
+    margin: 0;
+}
+
+.hero-stat-card {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+    z-index: 3;
+    width: 170px;
+    background: var(--green);
+    color: var(--white);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(25, 50, 40, 0.15);
+}
+
+.stat-icon {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.hero-stat-card h3 {
+    font-size: 30px;
+    margin-bottom: 3px;
+}
+
+.hero-stat-card p {
+    font-size: 11px;
+    margin: 0;
+    color: #e0e9e1;
+}
+
+.floating-label {
+    position: absolute;
+    left: -18px;
+    top: 0;
+    z-index: 4;
+    background: white;
+    border-radius: 12px;
+    padding: 12px 15px;
+    font-size: 11px;
+    font-weight: 800;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   FEATURED PETS
+========================= */
+
+.featured-section {
+    padding: 85px 0;
+    background: white;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.section-eyebrow {
+    color: var(--coral-dark);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h2,
+.steps-heading h2 {
+    font-size: clamp(29px, 3vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 9px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 0;
+}
+
+.pet-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.filter-btn {
+    border: 1px solid transparent;
+    border-radius: 25px;
+    background: var(--cream);
+    color: var(--green);
+    padding: 9px 15px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--green);
+    color: white;
+}
+
+.pet-card {
+    background: var(--cream);
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 30px rgba(32, 55, 47, 0.12);
+}
+
+.pet-image-wrapper {
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pet-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.pet-card:hover .pet-card-image {
+    transform: scale(1.04);
+}
+
+.pet-status-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 7px 10px;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--green);
+    border-radius: 20px;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.favorite-form {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    margin: 0;
+}
+
+.favorite-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--coral);
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.favorite-link {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+}
+
+.favorite-btn:hover {
+    background: var(--coral);
+    color: white;
+}
+
+.pet-card-body {
+    padding: 20px;
+}
+
+.pet-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.pet-title-row h3 {
+    font-size: 23px;
+    font-weight: 800;
+    margin: 0 0 7px;
+}
+
+.pet-title-row p {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 0;
+}
+
+.pet-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: white;
+    color: var(--green);
+    font-size: 18px;
+    transition: all 0.2s ease;
+}
+
+.pet-arrow:hover {
+    background: var(--coral);
+    color: white;
+}
+
+.pet-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.pet-location {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.view-pet-link {
+    color: var(--coral-dark);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.empty-pets {
+    background: var(--cream);
+    border-radius: 20px;
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.empty-pets > span {
+    font-size: 36px;
+}
+
+.empty-pets h3 {
+    margin: 15px 0 10px;
+    font-size: 25px;
+}
+
+.empty-pets p {
+    max-width: 500px;
+    margin: 0 auto 20px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* =========================
+   ADOPTION STEPS
+========================= */
+
+.steps-section {
+    padding: 80px 0 85px;
+    background: var(--green);
+    color: white;
+}
+
+.steps-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 40px;
+}
+
+.steps-heading .section-eyebrow {
+    color: #f4c86c;
+}
+
+.steps-heading h2 {
+    color: white;
+}
+
+.steps-heading > p {
+    color: #d5dfd7;
+    font-size: 13px;
+}
+
+.step-card {
+    position: relative;
+    min-height: 205px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    transition: background 0.25s ease;
+}
+
+.step-card:hover {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.step-number {
+    position: absolute;
+    right: 18px;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.12);
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    font-weight: 800;
+}
+
+.step-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #f5cb66;
+    color: var(--green);
+    border-radius: 11px;
+    font-size: 25px;
+    margin-bottom: 22px;
+}
+
+.step-card h3 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.step-card p {
+    color: #d1ddd4;
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.paw-footer {
+    background: var(--cream);
+    padding: 28px 0 15px;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 22px;
+}
+
+.footer-brand {
+    font-size: 17px;
+}
+
+.footer-content p {
+    color: var(--muted);
+    font-size: 11px;
+    margin: 0;
+}
+
+.footer-message {
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.footer-bottom {
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--muted);
+    font-size: 10px;
+    margin: 0;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 991px) {
+
+    .paw-navbar .navbar-collapse {
+        padding-top: 20px;
+    }
+
+    .paw-navbar .nav-link {
+        margin: 5px 0;
+    }
+
+    .navbar-actions {
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .hero-section {
+        padding: 50px 0 60px;
+    }
+
+    .hero-visual {
+        margin-top: 15px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .pet-filters {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .hero-section {
+        padding: 40px 0 45px;
+    }
+
+    .hero-title {
+        font-size: 44px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-visual {
+        min-height: 350px;
+    }
+
+    .hero-image-main {
+        height: 280px;
+        width: 70%;
+    }
+
+    .hero-image-small {
+        height: 160px;
+        width: 36%;
+    }
+
+    .hero-stat-card {
+        width: 135px;
+        padding: 15px;
+        bottom: 5px;
+    }
+
+    .hero-stat-card h3 {
+        font-size: 24px;
+    }
+
+    .floating-label {
+        left: 0;
+        font-size: 9px;
+    }
+
+    .featured-section {
+        padding: 55px 0;
+    }
+
+    .pet-image-wrapper {
+        height: 240px;
+    }
+
+    .steps-section {
+        padding: 55px 0;
+    }
+
+    .footer-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* Authentication pages */
+.auth-section {
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+    background: #fffaf4;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 38px;
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(45, 67, 52, 0.10);
+}
+
+.auth-icon {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.auth-card h1 {
+    text-align: center;
+    color: #244b3c;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #777777;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.auth-card .form-group {
+    margin-bottom: 20px;
+}
+
+.auth-card label {
+    display: block;
+    margin-bottom: 8px;
+    color: #344a3d;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.auth-card input {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #deded7;
+    border-radius: 10px;
+    background: #fffdfb;
+    font-size: 15px;
+    box-sizing: border-box;
+}
+
+.auth-card input:focus {
+    outline: none;
+    border-color: #df806b;
+    box-shadow: 0 0 0 3px rgba(223, 128, 107, 0.15);
+}
+
+.auth-card .help-text {
+    display: block;
+    margin-top: 7px;
+    color: #777777;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.auth-card .help-text ul {
+    padding-left: 18px;
+    margin: 5px 0;
+}
+
+.auth-card .error-text,
+.auth-card .form-errors {
+    display: block;
+    margin-top: 7px;
+    color: #b42318;
+    font-size: 13px;
+}
+
+.auth-card .form-errors ul {
+    padding-left: 20px;
+}
+
+.auth-submit {
+    display: block;
+    width: 100%;
+    border: none;
+    margin-top: 24px;
+    padding: 13px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 0;
+    color: #666666;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: #d76f59;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .auth-card {
+        padding: 25px 20px;
+    }
+
+    .auth-card h1 {
+        font-size: 26px;
+    }
+}
+
+
+
+
+/* ===== PawMate Full-Screen Login Page ===== */
+
+.paw-login-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 24px;
+    box-sizing: border-box;
+    background-color: #fffaf4;
+}
+
+.paw-login-card {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(36, 75, 60, 0.12);
+}
+
+/* Heading and subtitle */
+
+.paw-login-icon {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 14px;
+}
+
+.paw-login-card h1 {
+    width: 100%;
+    text-align: center;
+    color: #244b3c;
+    font-size: 32px;
+    margin: 0 0 12px;
+}
+
+.paw-login-subtitle {
+    text-align: center;
+    color: #777777;
+    line-height: 1.7;
+    margin: 0 0 30px;
+}
+
+/* Username and password fields */
+
+.paw-login-field {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.paw-login-field label {
+    display: block;
+    margin-bottom: 9px;
+    color: #244b3c;
+    font-weight: 600;
+}
+
+.paw-login-field input {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 15px;
+    border: 1px solid #deded7;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    font-size: 15px;
+}
+
+.paw-login-field input:focus {
+    outline: none;
+    border-color: #d9826c;
+    box-shadow: 0 0 0 3px rgba(217, 130, 108, 0.15);
+}
+
+/* Sign In button */
+
+.paw-login-button {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 26px;
+    padding: 13px;
+    border: none;
+    border-radius: 30px;
+    background-color: #203d34;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.paw-login-button:hover {
+    background-color: #315b49;
+}
+
+/* Registration and home links */
+
+.paw-login-register,
+.paw-login-home {
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;
+    line-height: 1.7;
+}
+
+.paw-login-register a,
+.paw-login-home a {
+    color: #d76f59;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.paw-login-register a:hover,
+.paw-login-home a:hover {
+    text-decoration: underline;
+}
+
+/* Login errors */
+
+.paw-login-error {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #fff0ee;
+    color: #b42318;
+    font-size: 14px;
+}
+
+/* Mobile layout */
+
+@media (max-width: 576px) {
+    .paw-login-container {
+        min-height: 100vh;
+        padding: 28px 16px;
+    }
+
+    .paw-login-card {
+        padding: 28px 22px;
+    }
+
+    .paw-login-card h1 {
+        font-size: 27px;
+    }
+}
+
+
+
+/* PawMate Profile Page */
+
+.profile-page {
+    min-height: 100vh;
+    padding: 55px 20px;
+    background: #fffaf4;
+    box-sizing: border-box;
+}
+
+.profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-heading h1 {
+    color: #244b3c;
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.profile-heading p {
+    color: #777;
+}
+
+.profile-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 35px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(36, 75, 60, 0.10);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: #f5e9dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-avatar span {
+    font-size: 42px;
+}
+
+.profile-card h2 {
+    text-align: center;
+    color: #244b3c;
+    margin-bottom: 6px;
+}
+
+.profile-role {
+    text-align: center;
+    color: #d76f59;
+    font-weight: 600;
+}
+
+.profile-divider {
+    height: 1px;
+    background: #eee8df;
+    margin: 25px 0;
+}
+
+.profile-form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #244b3c;
+    font-weight: 600;
+}
+
+.profile-form-group input,
+.profile-form-group select,
+.profile-form-group textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #deded7;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+.profile-save-button {
+    width: 100%;
+    padding: 14px;
+    background: #244b3c;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.profile-save-button:hover {
+    background: #315b49;
+}
+
+.profile-back-link {
+    display: block;
+    text-align: center;
+    margin-top: 22px;
+    color: #d76f59;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.profile-message {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    padding: 14px;
+    background: #eaf6ed;
+    color: #245b35;
+    border-radius: 10px;
+}
+
+.profile-error {
+    display: block;
+    margin-top: 6px;
+    color: #b42318;
+}
+
+.profile-hint {
+    display: block;
+    margin-top: 6px;
+    color: #777;
+}
+
+@media (max-width: 576px) {
+    .profile-card {
+        padding: 25px 20px;
+    }
+
+    .profile-heading h1 {
+        font-size: 28px;
+    }
+}
+
+/* PawMate Add Pet Page */
+
+.add-pet-page {
+    min-height: 100vh;
+    padding: 55px 20px;
+    background: #fffaf4;
+    box-sizing: border-box;
+}
+
+.add-pet-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.add-pet-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.add-pet-icon {
+    font-size: 42px;
+}
+
+.add-pet-heading h1 {
+    color: #244b3c;
+    font-size: 34px;
+    margin: 12px 0;
+}
+
+.add-pet-heading p {
+    color: #777;
+}
+
+.add-pet-card {
+    padding: 35px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(36, 75, 60, 0.10);
+}
+
+.pet-form-group {
+    margin-bottom: 22px;
+}
+
+.pet-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #244b3c;
+    font-weight: 600;
+}
+
+.pet-form-group input:not([type="checkbox"]),
+.pet-form-group select,
+.pet-form-group textarea {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #deded7;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+.pet-form-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #244b3c;
+}
+
+.pet-field-error {
+    display: block;
+    margin-top: 7px;
+    color: #b42318;
+}
+
+.add-pet-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #244b3c;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-pet-button:hover {
+    background: #315b49;
+}
+
+.add-pet-cancel {
+    display: block;
+    margin-top: 18px;
+    text-align: center;
+    color: #d76f59;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (max-width: 576px) {
+    .add-pet-card {
+        padding: 24px 20px;
+    }
+
+    .add-pet-heading h1 {
+        font-size: 28px;
+    }
+}
+
+.delete-pet-card {
+    max-width: 550px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.delete-pet-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.delete-pet-card h1 {
+    color: #244b3c;
+    margin-bottom: 15px;
+}
+
+.delete-pet-card p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+
+.delete-pet-button {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #b42318;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-pet-button:hover {
+    background: #8f1d14;
+}
+
+.pet-owner-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.pet-delete-link {
+    color: #b42318;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Pet Search and Filters */
+
+.pet-search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 35px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(36, 75, 60, 0.06);
+}
+
+.pet-search-form input,
+.pet-search-form select {
+    flex: 1 1 180px;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #deded7;
+    border-radius: 10px;
+    background: white;
+    font: inherit;
+}
+
+.pet-search-form button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: #244b3c;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pet-search-form button:hover {
+    background: #315b49;
+}
+
+.pet-search-reset {
+    align-self: center;
+    color: #d76f59;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px;
+}
+
+.pet-form-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pet-form-actions .add-pet-button {
+    cursor: pointer;
+}
+
+.pet-form-actions .add-pet-cancel {
+    text-decoration: none;
+}
+
+
+.add-pet-home-button {
+    display: inline-block;
+    padding: 12px 26px;
+    background-color: #2e8b57;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    margin: 15px 0;
+    transition: background-color 0.3s ease;
+}
+
+.add-pet-home-button:hover {
+    background-color: #246b45;
+    color: white;
+}
+

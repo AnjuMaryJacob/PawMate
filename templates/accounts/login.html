@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="paw-login-container">
+    <div class="paw-login-card">
+
+        <div class="paw-login-icon">🐾</div>
+
+        <h1>Welcome Back!</h1>
+
+        <p class="paw-login-subtitle">
+            Sign in to continue your journey with PawMate.
+        </p>
+
+        {% if form.errors %}
+            <div class="paw-login-error">
+                Your username or password is incorrect. Please try again.
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="paw-login-field">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    id="{{ form.username.id_for_label }}"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="paw-login-field">
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    id="{{ form.password.id_for_label }}"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="paw-login-button">
+                Sign In
+            </button>
+        </form>
+
+        <p class="paw-login-register">
+            Don't have an account?
+            <a href="{% url 'register' %}">Create an account</a>
+        </p>
+
+        <p class="paw-login-home">
+            <a href="{% url 'home' %}">← Back to Home</a>
+        </p>
+
+    </div>
+</div>
+{% endblock %}
+

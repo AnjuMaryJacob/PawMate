@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="add-pet-page">
+    <div class="add-pet-container">
+
+        <div class="add-pet-heading">
+            <span class="add-pet-icon">🐾</span>
+            <h1>Edit {{ pet.name }}</h1>
+            <p>Update your pet's information.</p>
+        </div>
+
+        <div class="add-pet-card">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="pet-form-group">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                            <small class="pet-field-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="add-pet-button">
+                    Save Changes
+                </button>
+
+                <a href="{% url 'pet_detail' pet.pk %}"
+                   class="add-pet-cancel">
+                    Cancel
+                </a>
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

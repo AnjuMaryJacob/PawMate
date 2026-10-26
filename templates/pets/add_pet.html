@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="add-pet-page">
+    <div class="add-pet-container">
+
+        <div class="add-pet-heading">
+            <span class="add-pet-icon">🐾</span>
+            <h1>Add a Pet</h1>
+            <p>Help a lovely pet find its forever home.</p>
+        </div>
+
+        <div class="add-pet-card">
+            <form method="post"
+                  enctype="multipart/form-data"
+                  id="add-pet-form">
+
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="pet-form-group">
+
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                            <small class="pet-field-error">
+                                {{ error }}
+                            </small>
+                        {% endfor %}
+
+                        {% if field.name == 'description' %}
+                            <button
+                                type="button"
+                                id="generate-description-button"
+                                class="add-pet-button"
+                                style="margin-top: 10px;"
+                            >
+                                ✨ Generate AI Description
+                            </button>
+
+                            <small id="ai-description-status"
+                                   role="status"
+                                   aria-live="polite"
+                                   style="display: block; margin-top: 8px;">
+                            </small>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+                
+                <div class="pet-form-actions">
+
+            
+                  <button type="submit" class="add-pet-button">
+                      🐾 Add Pet
+                  </button>
+
+
+
+                  <a href="{% url 'home' %}" class="add-pet-cancel">
+                    Cancel
+                  </a>
+                </div>
+                
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const generateButton = document.getElementById(
+        'generate-description-button'
+    );
+
+    const statusMessage = document.getElementById(
+        'ai-description-status'
+    );
+
+    const descriptionField = document.getElementById('id_description');
+    const form = document.getElementById('add-pet-form');
+
+    if (!generateButton || !descriptionField || !form) {
+        return;
+    }
+
+    generateButton.addEventListener('click', async function () {
+        const name = document.getElementById('id_name').value.trim();
+        const petType = document.getElementById('id_pet_type').value;
+        const location = document.getElementById('id_location').value.trim();
+
+        if (!name || !petType || !location) {
+            statusMessage.textContent =
+                'Please enter the pet name, pet type, and location first.';
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        generateButton.disabled = true;
+        generateButton.textContent = '⏳ Generating...';
+        statusMessage.textContent =
+            'Ollama is creating your pet description. This may take a minute.';
+
+        try {
+            const response = await fetch(
+                "{% url 'generate_ai_description' %}",
+                {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    data.error || 'Unable to generate the description.'
+                );
+            }
+
+            descriptionField.value = data.description;
+
+            statusMessage.textContent =
+                '✅ Description generated! You can edit it before saving.';
+
+        } catch (error) {
+            statusMessage.textContent =
+                '❌ ' + error.message;
+        } finally {
+            generateButton.disabled = false;
+            generateButton.textContent = '✨ Generate AI Description';
+        }
+    });
+});
+</script>
+{% endblock %}

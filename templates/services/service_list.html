@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}Pet Care Services | PawMate{% endblock %}
+
+{% block content %}
+
+<section class="featured-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <div>
+                <span class="section-eyebrow">HERE TO HELP</span>
+                <h2>Care for every paw.</h2>
+                <p>Discover pet care services in your area.</p>
+            </div>
+        </div>
+
+        <!-- Search and filter -->
+        <form method="get" class="row g-3 mb-5">
+
+            <div class="col-md-5">
+                <input
+                    type="text"
+                    name="city"
+                    class="form-control"
+                    placeholder="Enter city..."
+                    value="{{ request.GET.city|default:'' }}">
+            </div>
+
+            <div class="col-md-5">
+                <select name="type" class="form-select">
+
+                    <option value="">All services</option>
+
+                    {% for value, label in service_types %}
+                        <option
+                            value="{{ value }}"
+                            {% if request.GET.type == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-paw w-100">
+                    Search
+                </button>
+            </div>
+
+        </form>
+
+        <!-- Service cards -->
+        <div class="row g-4">
+
+            {% for service in services %}
+
+                <div class="col-md-6 col-lg-4">
+
+                    <article class="pet-card">
+
+                        {% if service.image %}
+                            <div class="pet-image-wrapper">
+                                <img
+                                    src="{{ service.image.url }}"
+                                    alt="{{ service.name }}"
+                                    class="pet-card-image">
+                            </div>
+                        {% endif %}
+
+                        <div class="pet-card-body">
+
+                            <span class="section-eyebrow">
+                                {{ service.get_service_type_display }}
+                            </span>
+
+                            <h3 class="mt-2">{{ service.name }}</h3>
+
+                            <p>{{ service.description|truncatewords:25 }}</p>
+
+                            <p class="pet-location">
+                                📍 {{ service.city }}
+                            </p>
+
+                            <p>
+                                <strong>Address:</strong>
+                                {{ service.address }}
+                            </p>
+
+                            <p>
+                                <strong>Phone:</strong>
+                                {{ service.phone }}
+                            </p>
+
+                            {% if service.opening_hours %}
+                                <p>
+                                    <strong>Hours:</strong>
+                                    {{ service.opening_hours }}
+                                </p>
+                            {% endif %}
+
+                            {% if service.website %}
+                                <a
+                                    href="{{ service.website }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="btn btn-outline-paw mt-2">
+                                    Visit Website
+                                </a>
+                            {% endif %}
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12">
+                    <div class="empty-pets">
+                        <span>🐾</span>
+                        <h3>No services found</h3>
+                        <p>
+                            No matching services are available yet.
+                            Please try another search or check back later.
+                        </p>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

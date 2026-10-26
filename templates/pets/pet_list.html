@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Find Pets | PawMate{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+<!-- Page heading -->
+<div class="text-center mb-5">
+    <h1 class="fw-bold">Find Your New Best Friend 🐾</h1>
+    <p class="text-muted">
+        Meet loving pets who are waiting for their forever homes.
+    </p>
+</div>
+
+<!-- Single search and filter form -->
+<form method="get" class="pet-search-form mb-5">
+
+    <input
+        type="search"
+        name="q"
+        value="{{ search_query|default:'' }}"
+        placeholder="Search by name, breed, or location"
+        aria-label="Search pets"
+    >
+
+    <select name="pet_type" aria-label="Filter by pet type">
+        <option value="">All Pet Types</option>
+
+        {% for pet_type in pet_types %}
+            <option
+                value="{{ pet_type.id }}"
+                {% if selected_pet_type == pet_type.id|stringformat:"s" %}selected{% endif %}
+            >
+                {{ pet_type.name }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <select name="status" aria-label="Filter by adoption status">
+        <option value="">All Statuses</option>
+
+        <option value="available"
+            {% if selected_status == 'available' %}selected{% endif %}>
+            Available
+        </option>
+
+        <option value="reserved"
+            {% if selected_status == 'reserved' %}selected{% endif %}>
+            Reserved
+        </option>
+
+        <option value="adopted"
+            {% if selected_status == 'adopted' %}selected{% endif %}>
+            Adopted
+        </option>
+    </select>
+
+    <button type="submit" class="btn btn-paw">
+        Search
+    </button>
+
+    <a href="{% url 'pet_list' %}" class="pet-search-reset">
+        Reset
+    </a>
+
+</form>
+
+<!-- Pet cards -->
+<div class="row g-4">
+
+    {% for pet in pets %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+
+                {% if pet.image %}
+                    <img
+                        src="{{ pet.image.url }}"
+                        class="card-img-top"
+                        alt="{{ pet.name }}"
+                        style="height: 240px; object-fit: cover;"
+                    >
+                {% else %}
+                    <div
+                        class="d-flex align-items-center justify-content-center bg-light"
+                        style="height: 240px; font-size: 70px;"
+                    >
+                        🐾
+                    </div>
+                {% endif %}
+
+                <div class="card-body p-4">
+
+                    <h4 class="fw-bold">{{ pet.name }}</h4>
+
+                    <p class="text-muted mb-2">
+                        {{ pet.breed|default:"Breed not specified" }}
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Type:</strong> {{ pet.pet_type }}
+                    </p>
+
+                    <p class="mb-2">
+                        <strong>Location:</strong>
+                        {{ pet.location|default:"Not specified" }}
+                    </p>
+
+                    <p class="mb-3">
+                        <strong>Gender:</strong>
+                        {{ pet.get_gender_display }}
+                    </p>
+
+                    <p>
+                        {{ pet.description|truncatewords:20 }}
+                    </p>
+
+                    <p class="mb-3">
+                        <strong>Status:</strong>
+                        {{ pet.get_status_display }}
+                    </p>
+
+                    <a
+                        href="{% url 'pet_detail' pet.pk %}"
+                        class="btn btn-paw w-100"
+                    >
+                        Meet {{ pet.name }}
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    {% empty %}
+
+        <div class="col-12 text-center py-5">
+            <h4>No pets found 🐶</h4>
+
+            <p class="text-muted">
+                No pets match your search. Try changing your filters.
+            </p>
+
+            <a href="{% url 'pet_list' %}" class="btn btn-paw">
+                View All Pets
+            </a>
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+</section>
+
+{% endblock %}
